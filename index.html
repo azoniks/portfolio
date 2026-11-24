@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Семь IT-кейсов: веб-разработка, CRM, Telegram-автоматизация, восстановление сайтов и развёртывание на Linux.">
+<title>Портфолио IT-проектов</title>
+<style>
+:root{color-scheme:light;--paper:#f7f6f0;--ink:#202724;--muted:#505c56;--line:#cfd7ce;--accent:#215541}
+*{box-sizing:border-box}
+html{scroll-padding-top:1rem}
+body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.65 system-ui,sans-serif}
+a{color:var(--accent);text-underline-offset:.23em}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
+.wrap{width:min(70rem,calc(100% - 3rem));margin-inline:auto}
+header{padding:clamp(3rem,9vw,7.5rem) 0 3rem;border-bottom:1px solid var(--line)}
+h1,h2,h3{line-height:1.12;letter-spacing:-.035em;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.65rem,7vw,6rem);max-width:12ch}
+h2{font-size:clamp(1.8rem,4vw,3rem);margin-bottom:1.5rem}
+h3{font-size:clamp(1.35rem,2.5vw,2rem);margin-top:.6rem}
+.lead{font-size:clamp(1.05rem,2vw,1.35rem);max-width:43rem;color:var(--muted);margin:1.5rem 0 1.75rem}
+nav{display:flex;gap:1rem 1.5rem;flex-wrap:wrap}
+section{padding:3.5rem 0 0}
+.case{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:1.4rem 3rem;border-top:1px solid var(--line);padding:2rem 0}
+.status{font-size:.84rem;color:var(--accent);font-weight:650}
+dl,dd{margin:0}
+dl{display:grid;gap:.75rem}
+dt{font-weight:680}
+dd{color:var(--muted);overflow-wrap:anywhere}
+footer{border-top:1px solid var(--line);margin-top:2rem;padding:1.5rem 0 2.5rem}
+@media(max-width:700px){.case{grid-template-columns:1fr}.wrap{width:calc(100% - 2rem)}section{padding-top:2.5rem}}
+</style>
+</head>
+<body>
+<header id="top">
+  <div class="wrap">
+    <h1>Портфолио IT-проектов</h1>
+    <p class="lead">Веб-разработка, доработка CRM, автоматизация через Telegram и развёртывание на Linux.</p>
+    <nav aria-label="Разделы портфолио"><a href="#implementations">Внедрения</a><a href="#prototypes">Прототипы и проектирование</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <section aria-labelledby="implementations">
+    <h2 id="implementations">Внедрения</h2>
+    <article id="telegram" class="case">
+  <div><span class="status">Внедрение</span><h3>Telegram-агент для мониторинга фриланс-заказов</h3></div>
+  <dl><div><dt>Задача</dt><dd>Находить свежие IT-заказы, на которые можно откликнуться бесплатно, и сокращать время на подготовку предложений.</dd></div>
+<div><dt>Решение</dt><dd>Служба на Ubuntu проверяет RSS FL.ru каждые 15 минут, выбирает заказы с отметкой &#171;Для всех&#187; и отправляет их в Telegram. Локальный процесс на Windows получает заявки по SSH, готовит черновики через Codex CLI в пределах дневной квоты и возвращает их ответом на исходное сообщение. Очередь и отметки о доставке сохраняются между запусками.</dd></div>
+<div><dt>Результат</dt><dd>Проверена доставка заявок и двух сгенерированных черновиков. Сбор заявок работает на VPS, генерация доступна при включённом ПК. Отклик на бирже отправляет исполнитель.</dd></div>
+<div><dt>Технологии</dt><dd>PowerShell, Python, Telegram Bot API, RSS, SSH, systemd, Codex CLI, Планировщик заданий Windows.</dd></div></dl>
+</article>
+    <article id="crm" class="case">
+  <div><span class="status">Внедрение</span><h3>CRM мебельной компании</h3></div>
+  <dl><div><dt>Задача</dt><dd>Упростить работу с дедлайнами менеджеров и перенести график производственного цеха в CRM.</dd></div>
+<div><dt>Решение</dt><dd>В CRM появился календарь задач с фильтром по ответственному, режимами месяца, недели, дня и повестки и переходом в карточку задачи. Для цеха добавлен отдельный модуль графика. Также настроена автоматическая подстановка клиента из лида при создании связанной задачи.</dd></div>
+<div><dt>Результат</dt><dd>Календарь проверен в рабочей CRM. Модуль графика развёрнут на рабочем сервере, загружено 366 записей за два месяца. Связь клиента проверена в карточках тестовых задач.</dd></div>
+<div><dt>Технологии</dt><dd>PHP, SQL, FullCalendar, настройка CRM.</dd></div></dl>
+</article>
+    <article id="opencart" class="case">
+  <div><span class="status">Восстановление</span><h3>Восстановление интернет-магазина из резервной копии</h3></div>
+  <dl><div><dt>Задача</dt><dd>Восстановить магазин OpenCart и его базу данных на другом VPS.</dd></div>
+<div><dt>Решение</dt><dd>Восстановлены приложение и база. Настроена связка Caddy, Nginx и PHP, подготовлена конфигурация домена и автоматического выпуска HTTPS-сертификата.</dd></div>
+<div><dt>Результат</dt><dd>Доступность магазина с базой на новом сервере подтверждена. Переключение домена и HTTPS зависели от обновления DNS. Изображения в объём восстановления не входили.</dd></div>
+<div><dt>Технологии</dt><dd>OpenCart, PHP, Nginx, Caddy, DNS, Linux.</dd></div></dl>
+</article>
+    <article id="adygea" class="case">
+  <div><span class="status">Внедрение</span><h3>Туристический сайт в Адыгее</h3></div>
+  <dl><div><dt>Задача</dt><dd>Представить размещение и варианты активного отдыха на отдельных страницах и принимать заявки посетителей.</dd></div>
+<div><dt>Решение</dt><dd>Подготовлены страницы гостиницы и подбора отдыха, форма заявки и разделы с вариантами активностей и ценами. В проекте есть редактор контента и хранение заявок в SQLite.</dd></div>
+<div><dt>Результат</dt><dd>Страницы и изменения контента публиковались на рабочем сайте. Посетитель может посмотреть условия размещения и оставить заявку на подбор отдыха.</dd></div>
+<div><dt>Технологии</dt><dd>Python, SQLite, HTML, CSS, JavaScript.</dd></div></dl>
+</article>
+  </section>
+  <section aria-labelledby="prototypes">
+    <h2 id="prototypes">Прототипы и проектирование</h2>
+    <article id="tradecore" class="case">
+  <div><span class="status">ТЗ и прототип</span><h3>TradeCore ERP для мебельного бизнеса</h3></div>
+  <dl><div><dt>Задача</dt><dd>Спроектировать систему учёта и продаж с каталогом товаров, заказами и интеграциями.</dd></div>
+<div><dt>Решение</dt><dd>Подготовлено ТЗ на 24 раздела со схемой данных, интеграциями, миграцией, требованиями к распознаванию накладных и критериями приёмки. В прототипе интерфейса реализованы адаптивные таблицы и формы, навигация и поиск товаров.</dd></div>
+<div><dt>Результат</dt><dd>Сборка интерфейса прошла. Создание товара и заказа проверено с тестовым API. Статус — ТЗ и прототип.</dd></div>
+<div><dt>Технологии</dt><dd>React, TypeScript, проектирование API и модели данных.</dd></div></dl>
+</article>
+    <article id="forecaster" class="case">
+  <div><span class="status">Локальный проект</span><h3>Forecaster для планирования загрузки сотрудников</h3></div>
+  <dl><div><dt>Задача</dt><dd>Видеть дефицит сотрудников по часам и понимать, когда можно согласовать дополнительный отпуск.</dd></div>
+<div><dt>Решение</dt><dd>В месячной таблице по датам и должностям отображаются отсутствующие, лимит и доступные места для отпуска. При расчёте учитывается почасовое покрытие. При необходимости интерфейс показывает рекомендуемую дополнительную смену.</dd></div>
+<div><dt>Результат</dt><dd>Приложение запущено локально, проверена доступность веб-интерфейса. Статус — локальный проект.</dd></div>
+<div><dt>Технологии</dt><dd>Python, веб-интерфейс, расчёт покрытия смен.</dd></div></dl>
+</article>
+    <article id="wordpress" class="case">
+  <div><span class="status">Локальная проверка</span><h3>Фильтрация спама в формах WordPress</h3></div>
+  <dl><div><dt>Задача</dt><dd>Сократить число спам-заявок из форм сайта, которые попадают администратору в Telegram.</dd></div>
+<div><dt>Решение</dt><dd>Для формы подписки добавлена проверка имён, похожих на автоматически сгенерированные строки. Срабатывания сохраняются в карантине до отправки уведомления.</dd></div>
+<div><dt>Результат</dt><dd>Проблемная заявка блокируется в тестах, обычные имена проходят. Статус — доработка проверена локально.</dd></div>
+<div><dt>Технологии</dt><dd>PHP, WordPress, формы, Telegram.</dd></div></dl>
+</article>
+  </section>
+</main>
+<footer><div class="wrap"><a href="#top">К началу страницы ↑</a></div></footer>
+</body>
+</html>
